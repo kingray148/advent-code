@@ -12,17 +12,17 @@ import numpy as np
 
 def calculateScore(files):
     with open(files, 'r') as f:
-        nums = f.readline() #读取第一行数字
-        content = f.readlines() #读取5x5数组原始数据
-        while '\n' in content:  #去除空行
+        nums = f.readline()                                 #读取第一行数字
+        content = f.readlines()                             #读取5x5数组原始数据
+        while '\n' in content:                              #去除空行
             content.remove('\n')
     nums = nums.split(',')
-    nums = [int(x) for x in nums]   #将第一行数字转化为整数list
+    nums = [int(x) for x in nums]                           #将第一行数字转化为整数list
     #print(content)
-    content = ''.join(content).split()  #将读取数据转换为单行然后转换为字符串list
-    content = [int(x) for x in content] #字符串list转为整数list
-    blocknum = int(len(content)/25) #计算转换为三维数组的第一维数字
-    content = np.reshape(content, (blocknum,5,5))   #将数据转换为多组的5x5数组（三维数组）
+    content = ''.join(content).split()                      #将读取数据转换为单行然后转换为字符串list
+    content = [int(x) for x in content]                     #字符串list转为整数list
+    blocknum = int(len(content)/25)                         #计算转换为三维数组的第一维数字
+    content = np.reshape(content, (blocknum,5,5))           #将数据转换为多组的5x5数组（三维数组）
     #print(blocknum)
     #print(content)
     #below is to calculate score based on reading data
