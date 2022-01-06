@@ -32,13 +32,13 @@ def calculateScore(files):
         content[content == x] = -1                          #将标识出的数字替换为-1以便于计算（因数组中含有0，因此用-1替换以便计算
         if -5 in np.sum(content, axis=1):                   #如果数组中出现某一行全为-1，即全行数字被标识出来，则返回计算结果
         #    print('x='+str(x))
-            for y in np.where(np.sum(content,axis=1)==-5):  #找出第一个符合行全为零的数组（有可能多个数组同时出现某行为零情况）
+            for y in np.where(np.sum(content,axis=1)==-5):  #找出第一个符合行全为-1的数组（有可能多个数组同时出现某行为零情况）
         #        print('y='+str(y))
-                content[y[0]][content[y[0]] == -1] = 0      #将该数组中所有之前标识喂-1的整数重置为零，以便于计算剩余数字总和
+                content[y[0]][content[y[0]] == -1] = 0      #将该数组中所有之前标识为-1的整数重置为零，以便于计算剩余数字总和
                 return sum(sum(content[y[0]]))*x
         elif -5 in np.sum(content, axis=2):                 #如果数组中出现某一列全为-1，即全行数字被标识出来，则返回计算结果
         #    print('x=' + str(x))
-            for y in np.where(np.sum(content,axis=2)==-5):
+            for y in np.where(np.sum(content,axis=2)==-5):  #找出第一个符合列全为-1的数组（有可能多个数组同时出现某列为零情况）
         #        print('y='+str(y))
         #        print(content[y])
                 content[y[0]][content[y[0]]==-1] = 0
