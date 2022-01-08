@@ -9,9 +9,17 @@ https://adventofcode.com/2021/day/8
 """
 
 
-def func(name):
-    pass
-
+def calculateDigit(file):
+    with open(file, 'r') as f:
+        input = f.readlines()
+        input = [x.split('|')[1] for x in input]
+        input = ' '.join(input).split()
+    DigitNum = [2, 3, 4, 7]
+    result = 0
+    for x in input:
+        if len(x) in DigitNum:
+            result += 1
+    return result
 
 if __name__ == '__main__':
-    func(hello)
+    print(calculateDigit('..//files//Day 8 data.txt'))
