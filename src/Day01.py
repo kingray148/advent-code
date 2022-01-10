@@ -25,15 +25,30 @@ all data are stored in txt file: sonar sweep data.txt
 @author: TK
 """
 
-def FindLargerNum(file):
+def readData(file):
+    with open(file, 'r') as f:
+        input = ''.join(f.readlines()).split('\n')
+        input = [int(x) for x in input]
+        #print(input[0])
+        return input
+
+def findLargerNum(data):
     temp = -1
     count = 0
-    with open(file, 'r') as f:
-        for x in f.readlines():
-            if temp != -1 and int(x) > temp:
-                count += 1
-            temp = int(x)
+    for x in data:
+        if temp != -1 and x > temp:
+            count += 1
+        temp = x
     return count
 
+def findLNumWindow(data, window_size):
+    count = 0
+    for i in range(0, len(data)-window_size):
+        if data[i+window_size] > data[i]:
+            count += 1
+    return count
+
+
 if __name__ == '__main__':
-    print(FindLargerNum('..\\files\Sonar Sweep data.txt'))
+    print(findLargerNum(readData('..\\files\Sonar Sweep data.txt')))
+    print(findLNumWindow(readData('..\\files\Sonar Sweep data.txt'),3))
