@@ -35,8 +35,8 @@ def powerConsumption(file):
         else:
             gamma[i] = '0'
             epsilon[i] = '1'
-    print(gamma)
-    print(epsilon)
+    #print(gamma)
+    #print(epsilon)
     gamma = int(''.join(gamma),2)
     epsilon = int(''.join(epsilon), 2)
     #print(count)
@@ -97,7 +97,7 @@ def lifeSupportRating(file):
 
 
 if __name__ == '__main__':
-    #print(powerConsumption('..\\files\\Day 3 data.txt'))
+    print(powerConsumption('..\\files\\Day 3 data.txt'))
     #webop("https://adventofcode.com/2021/day/3/input")
     #webop('https://www.google.com')
     print(lifeSupportRating('..//files//Day 3 data.txt'))
