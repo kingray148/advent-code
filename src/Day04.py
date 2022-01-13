@@ -45,6 +45,33 @@ def calculateScore(files):
         #        print(content[y])
                 return sum(sum(content[y[0]]))*x
 
+def lastWinScore(files):
+    with open(files, 'r') as f:
+        nums = f.readline()                                 #读取第一行数字
+        content = f.readlines()                             #读取5x5数组原始数据
+        while '\n' in content:                              #去除空行
+            content.remove('\n')
+    nums = nums.split(',')
+    nums = [int(x) for x in nums]                           #将第一行数字转化为整数list
+    #print(content)
+    content = ''.join(content).split()                      #将读取数据转换为单行然后转换为字符串list
+    content = [int(x) for x in content]                     #字符串list转为整数list
+    blocknum = int(len(content)/25)                         #计算转换为三维数组的第一维数字
+    content = np.reshape(content, (blocknum,5,5))           #将数据转换为多组的5x5数组（三维数组）
+    #print(blocknum)
+    #print(content)
+    #below is to calculate score based on reading data
+    for x in nums:                                          #对第一行数字进行遍历，找出使任一5x5数组出现行或列全部被标识的数字
+        content[content == x] = -1                          #将标识出的数字替换为-1以便于计算（因数组中含有0，因此用-1替换以便计算
+        lastBoard = content[content.shape[0]-1]             #保存最后一个board，假如达成判断标准，则其为答案
+        content = np.delete(content, np.where(np.sum(content, axis=1)==-5)[0], 0)   #删除某一行中数据出现全为-1的board
+        content = np.delete(content, np.where(np.sum(content, axis=2)==-5)[0], 0)   #删除某一列中数据出现全为-1的board
+        if content.shape[0] == 0:                           #如果删除符合条件的board后，不再剩余board，则达成判断标准
+            lastBoard[lastBoard == -1] = 0                  #将取值为-1的元素置零，以便于计算总和
+            #print(lastBoard)
+            #print(x)
+            return sum(sum(lastBoard))*x
 
 if __name__ == '__main__':
-    print(calculateScore('..\\files\\Day 4 data.txt'))
+    #print(calculateScore('..\\files\\Day 4 data.txt'))
+    print(lastWinScore('..\\files\\Day 4 data.txt'))
