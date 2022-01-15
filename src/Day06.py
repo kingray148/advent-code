@@ -44,7 +44,7 @@ def lanternFish(data, days):
 
 if __name__ == '__main__':
     time_start = time.perf_counter()    #记录程序运行开始时间
-    print(sum(lanternFish(readData('..//files//Day 6 data.txt'), 80).values()))     #day1题目答案计算
-    print(sum(lanternFish(readData('..//files//Day 6 data.txt'), 256).values()))    #day2题目答案计算
+    print(sum(lanternFish(readData('..//files//Day 6 data.txt'), 80).values()))     #part1题目答案计算
+    print(sum(lanternFish(readData('..//files//Day 6 data.txt'), 256).values()))    #part2题目答案计算
     time_end = time.perf_counter()      #记录程序运行结束时间
     print(time_end - time_start)        #计算程序运行总时长
