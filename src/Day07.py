@@ -23,6 +23,22 @@ def leastFuel(file):
         fuelQty.append(fuel)
     return min(fuelQty)
 
+def leastFuel2(file):
+    with open(file, 'r') as f:
+        input = f.readlines()
+    input = [int(x) for x in input[0].split(',')]
+    position = set(input)
+    fuelQtyList = []
+    for x in position:
+        fuelQty = 0
+        for y in input:
+            fuelQty += (abs(x - y) + 1)*abs(x - y)/2
+        fuelQtyList.append(fuelQty)
+    #print(position)
+    #print(fuelQtyList)
+    return min(fuelQtyList)
+    #print(input[0])
 
 if __name__ == '__main__':
     print(leastFuel('..//files//Day 7 data.txt'))
+    print(leastFuel2('..//files//Day 7 data.txt'))
