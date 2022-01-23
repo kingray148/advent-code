@@ -60,7 +60,7 @@ def smallCaveTimes(x, pathList):
         #print('3')
         return False
     else:
-        print('4')
+        #print('4')
         return True
 
 def calPath2(file):
